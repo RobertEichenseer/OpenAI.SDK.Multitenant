@@ -39,6 +39,12 @@ To provide the `tenantId` to the processing pipeline two extension methods for `
 
 The tenant information is provided to the processing pipeline as part of the `Chat.Role` System BUT is not provided to the LLM. The `MultiTenantPolicy` implementation removes the information before it will be posted and just uses it for the tenant specific handling of responses.
 
+## Repo Content
+
+- An [Azure CLI script](src/CreateEnv/CreateEnv.azcli) to create all Azure resources to run the demo. After running the script necessary credentials (API KEY), endpoint information (API Endpoint) and model deployment name are provided in environment variables.
+- A simplified [c# .NET console application](src/client) which performs calls against the Azure OpenAI model instance using the custom `MultiTenantPolicy` and the Open AI Client extensions.
+- A simplified [c# .NET classlib](src/PipelinePolicy/) which implements a custom HttpPipelinePolicy (`MultiTenantPolicy`) and provides extension methods to call `GetChatCompletionsAsync()` and `GetChatCompletions()` with a tenant id.
+
 ## Summary
 
 The .NET Azure OpenAI SDK can be easily extended to provide centralized multi-tenant specific handling of requests and responses.
@@ -47,8 +53,3 @@ This can be easily integrated by:
 
 - custom `HttpPipelinePolicy` pipelines
 - extension methods of `GetChatCompletionsAsync()`and `GetChatCompletions()`
-
-## Repo Content
-
-- An [Azure CLI script](src/CreateEnv/CreateEnv.azcli) to create all Azure resources to run the demo. After running the script necessary credentials (API KEY), endpoint information (API Endpoint) and model deployment name are provided in environment variables.
-- An simplified [c# .NET console application](src/client) which performs calls against the Azure OpenAI model instance using the custom `MultiTenantPolicy` and the Open AI Client extensions.
