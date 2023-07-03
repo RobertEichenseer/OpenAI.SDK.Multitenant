@@ -1,6 +1,6 @@
 # Azure OpenAI .NET SDK - Implement multi-tenant solutions
 
-.NET Azure OpenAI SDK extensibility to support the development multi-tenant solutions.
+.NET Azure OpenAI SDK extensibility to support the development of multi-tenant solutions.
 
 ## Challenge
 
